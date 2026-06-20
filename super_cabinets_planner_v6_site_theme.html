@@ -1,0 +1,1915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Super Cabinets Kitchen Design Planner</title>
+<style>
+
+  :root{
+    --bg:#f7f5ef;
+    --page:#ffffff;
+    --panel:#ffffff;
+    --panelAlt:#faf9f6;
+    --ink:#111111;
+    --muted:#6f6f6f;
+    --subtle:#9a9a9a;
+    --line:#dedbd3;
+    --lineStrong:#111111;
+    --brand:#111111;
+    --accent:#111111;
+    --accentSoft:#f2f0ea;
+    --good:#0f766e;
+    --goodSoft:#eefaf7;
+    --warn:#a16207;
+    --warnSoft:#fff8e7;
+    --danger:#b91c1c;
+    --dangerSoft:#fff1f1;
+    --base:#e8d7b8;
+    --wallcab:#dfe7ee;
+    --tall:#e5d9e8;
+    --appliance:#d8d8d8;
+    --filler:#eee2c5;
+    --selected:#111111;
+    --wall:#111111;
+    --shadow:0 18px 50px rgba(17,17,17,.08);
+    --shadowSoft:0 8px 24px rgba(17,17,17,.06);
+    --radius:6px;
+    --radiusSm:4px;
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    min-height:100vh;
+    font-family:Arial, Helvetica, sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+  }
+  body:before{display:none}
+
+  header{
+    position:sticky;
+    top:0;
+    z-index:60;
+    margin:0;
+    padding:18px 24px;
+    border:0;
+    border-bottom:1px solid var(--line);
+    border-radius:0;
+    background:#fff;
+    color:var(--ink);
+    display:flex;
+    justify-content:space-between;
+    gap:16px;
+    align-items:center;
+    flex-wrap:wrap;
+    box-shadow:none;
+    backdrop-filter:none;
+  }
+  header:before{display:none}
+  h1{
+    font-size:24px;
+    margin:0;
+    letter-spacing:0;
+    font-weight:700;
+  }
+  .subtitle{
+    font-size:13px;
+    color:#565656;
+    margin-top:5px;
+    max-width:780px;
+    line-height:1.4;
+  }
+  .siteMiniNav{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+    margin-top:10px;
+    font-size:13px;
+  }
+  .siteMiniNav a{
+    color:#111;
+    text-decoration:underline;
+    text-underline-offset:4px;
+  }
+  .siteMiniNav a:hover{color:#666}
+
+  button,input,select,textarea{font-family:inherit;font-size:14px}
+  button{
+    border:1px solid #111;
+    background:#fff;
+    border-radius:0;
+    padding:10px 14px;
+    cursor:pointer;
+    color:#111;
+    font-weight:600;
+    letter-spacing:0;
+    box-shadow:none;
+    transition:background .12s ease,color .12s ease,border-color .12s ease;
+  }
+  button:hover{
+    transform:none;
+    box-shadow:none;
+    background:#111;
+    color:#fff;
+    border-color:#111;
+  }
+  button:active{transform:none}
+  button:disabled{opacity:.45;cursor:not-allowed}
+  button.primary,
+  button.blue,
+  button.good{
+    color:#fff;
+    border-color:#111;
+    background:#111;
+    box-shadow:none;
+  }
+  button.primary:hover,
+  button.blue:hover,
+  button.good:hover{background:#333;border-color:#333}
+  button.danger{
+    color:#fff;
+    border-color:#b91c1c;
+    background:#b91c1c;
+  }
+  button.danger:hover{background:#8f1717;border-color:#8f1717}
+  button.small{font-size:12px;padding:7px 10px;border-radius:0}
+  button.icon{width:38px;height:34px;padding:0;font-weight:700;border-radius:0}
+
+  input,select,textarea{
+    width:100%;
+    border:1px solid var(--line);
+    border-radius:0;
+    padding:10px 11px;
+    background:#fff;
+    color:#111;
+    outline:none;
+    box-shadow:none;
+    transition:border-color .12s ease,background .12s ease;
+  }
+  input:focus,select:focus,textarea:focus{
+    border-color:#111;
+    box-shadow:none;
+    background:#fff;
+  }
+  label{
+    display:block;
+    font-size:12px;
+    font-weight:700;
+    color:#111;
+    margin-bottom:5px;
+    letter-spacing:0;
+    text-transform:none;
+  }
+  code{
+    background:#f4f4f4;
+    border:1px solid #ddd;
+    border-radius:0;
+    padding:2px 5px;
+  }
+
+  .app{
+    display:grid;
+    grid-template-columns:minmax(330px,390px) minmax(700px,1fr) minmax(350px,400px);
+    gap:16px;
+    height:calc(100vh - 91px);
+    min-height:760px;
+    padding:16px;
+    position:relative;
+    z-index:1;
+  }
+  aside{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:0;
+    overflow:auto;
+    box-shadow:none;
+    backdrop-filter:none;
+  }
+  .left,.right{border-left:1px solid var(--line);border-right:1px solid var(--line)}
+  .section{
+    padding:18px;
+    border-bottom:1px solid var(--line);
+  }
+  .section:last-child{border-bottom:0}
+  .section h2{
+    font-size:17px;
+    margin:0 0 14px;
+    letter-spacing:0;
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .section h2:before{
+    content:"";
+    width:18px;
+    height:2px;
+    border-radius:0;
+    background:#111;
+    box-shadow:none;
+  }
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+  .row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:10px}
+  .toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .hint{font-size:12px;color:#666;line-height:1.45}
+  .status{
+    padding:11px 12px;
+    border-radius:0;
+    border:1px solid var(--line);
+    background:#fafafa;
+    color:#555;
+    font-size:12px;
+    line-height:1.45;
+    margin-top:10px;
+    box-shadow:none;
+  }
+  .status.good{background:var(--goodSoft);color:#075e57;border-color:#b9e4dc}
+  .status.warn{background:var(--warnSoft);color:#7a4c04;border-color:#f1d58f}
+  .status.err{background:var(--dangerSoft);color:#8f1717;border-color:#f3b7b7}
+
+  .tabs{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:0;
+    padding:0;
+    margin-bottom:12px;
+    border:1px solid var(--line);
+    border-radius:0;
+    background:#fff;
+  }
+  .tab{
+    padding:10px 8px;
+    border-right:1px solid var(--line);
+    background:#fff;
+    border-radius:0;
+    cursor:pointer;
+    font-size:12px;
+    font-weight:700;
+    text-align:center;
+    color:#555;
+    transition:.12s ease;
+  }
+  .tab:last-child{border-right:0}
+  .tab.active{
+    background:#111;
+    color:#fff;
+    box-shadow:none;
+  }
+  .hidden{display:none!important}
+  textarea{
+    min-height:170px;
+    font-family:Consolas, Monaco, monospace;
+    font-size:12px;
+    resize:vertical;
+  }
+
+  .progress{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:0;
+    margin-bottom:14px;
+    padding:0;
+    border-radius:0;
+    background:#fff;
+    border:1px solid var(--line);
+  }
+  .progress button{
+    position:relative;
+    font-size:11px;
+    padding:10px 5px;
+    border-radius:0;
+    background:#fff;
+    border:0;
+    border-right:1px solid var(--line);
+    box-shadow:none;
+    color:#555;
+  }
+  .progress button:last-child{border-right:0}
+  .progress button:hover{box-shadow:none;background:#f4f4f4;color:#111}
+  .progress button.active{
+    background:#111;
+    color:#fff;
+    box-shadow:none;
+  }
+  .progress button.done{
+    background:#f5f5f5;
+    color:#111;
+  }
+
+  .layoutGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .layoutCard{
+    border:1px solid var(--line);
+    border-radius:0;
+    padding:12px;
+    background:#fff;
+    cursor:pointer;
+    box-shadow:none;
+    transition:border-color .12s ease,background .12s ease;
+  }
+  .layoutCard:hover{
+    transform:none;
+    border-color:#111;
+    box-shadow:none;
+    background:#fafafa;
+  }
+  .layoutCard.active{
+    border-color:#111;
+    background:#f7f5ef;
+    box-shadow:inset 0 0 0 2px #111;
+  }
+  .layoutTitle{font-weight:700;font-size:13px;margin-bottom:7px;letter-spacing:0}
+  .layoutDrawing{
+    height:74px;
+    border:1px solid var(--line);
+    border-radius:0;
+    background:#fff;
+    position:relative;
+    margin-bottom:7px;
+    overflow:hidden;
+  }
+  .layoutDrawing:before{
+    content:"";
+    position:absolute;
+    inset:8px;
+    border:1px solid #ddd;
+    border-radius:0;
+  }
+  .bar{
+    position:absolute;
+    background:#e8d7b8;
+    border:1px solid #111;
+    border-radius:0;
+    box-shadow:none;
+  }
+  .one .bar1{left:12%;top:20%;width:76%;height:18px}
+  .lshape .bar1{left:12%;top:16%;width:68%;height:17px}.lshape .bar2{left:12%;top:16%;width:17px;height:64%}
+  .ushape .bar1{left:15%;top:16%;width:70%;height:17px}.ushape .bar2{left:15%;top:16%;width:17px;height:64%}.ushape .bar3{right:15%;top:16%;width:17px;height:64%}
+  .galley .bar1{left:12%;top:18%;width:76%;height:17px}.galley .bar2{left:12%;bottom:18%;width:76%;height:17px}
+  .island .bar1{left:12%;top:16%;width:76%;height:17px}.island .bar2{left:32%;bottom:20%;width:36%;height:18px}
+
+  .workspace{
+    overflow:auto;
+    position:relative;
+    border:1px solid var(--line);
+    border-radius:0;
+    background:#fff;
+    box-shadow:none;
+    backdrop-filter:none;
+  }
+  .stageHeader{
+    position:sticky;
+    top:0;
+    z-index:30;
+    padding:12px 14px;
+    border-bottom:1px solid var(--line);
+    background:#fff;
+    backdrop-filter:none;
+    display:flex;
+    justify-content:space-between;
+    gap:8px;
+    align-items:center;
+    flex-wrap:wrap;
+  }
+  .stageHeader .info{
+    font-size:12px;
+    color:#555;
+    font-weight:600;
+    background:#fafafa;
+    border:1px solid var(--line);
+    border-radius:0;
+    padding:8px 10px;
+  }
+  .stageWrap{
+    padding:26px;
+    min-width:850px;
+    min-height:700px;
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+    background:#f7f5ef;
+  }
+  #stage{
+    position:relative;
+    background:#fff;
+    border:8px solid #111;
+    border-radius:0;
+    box-shadow:0 8px 24px rgba(17,17,17,.08);
+    overflow:hidden;
+    transform-origin:top center;
+    touch-action:none;
+  }
+  #stage.grid{
+    background-image:
+      linear-gradient(to right, rgba(17,17,17,.055) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(17,17,17,.055) 1px, transparent 1px),
+      linear-gradient(to right, rgba(17,17,17,.12) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(17,17,17,.12) 1px, transparent 1px);
+    background-size:5px 5px,5px 5px,60px 60px,60px 60px;
+  }
+  .dimLine{
+    position:absolute;
+    pointer-events:none;
+    color:#111;
+    font-size:11px;
+    font-weight:700;
+    background:#fff;
+    border:1px solid #111;
+    padding:4px 7px;
+    border-radius:0;
+    z-index:3;
+    box-shadow:none;
+  }
+  #dimWidth{left:50%;top:7px;transform:translateX(-50%)}
+  #dimDepth{right:7px;top:50%;transform:translateY(-50%) rotate(90deg)}
+
+  .piece,.opening{
+    position:absolute;
+    border:1px solid #111;
+    border-radius:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:4px;
+    cursor:grab;
+    user-select:none;
+    line-height:1.05;
+    color:#111;
+    font-weight:700;
+    font-size:10px;
+    box-shadow:none;
+    touch-action:none;
+    transition:outline-color .12s ease,background .12s ease;
+  }
+  .piece:hover,.opening:hover{
+    filter:none;
+    box-shadow:0 0 0 2px rgba(17,17,17,.16);
+  }
+  .piece:active,.opening:active{cursor:grabbing}
+  .piece.base{background:#e8d7b8}
+  .piece.wall{background:#dfe7ee}
+  .piece.tall{background:#e5d9e8}
+  .piece.appliance{background:#d8d8d8}
+  .piece.filler{background:#eee2c5;border-style:dashed}
+  .piece.selected,.opening.selected{
+    outline:3px solid #111;
+    outline-offset:3px;
+    z-index:20;
+    box-shadow:none;
+  }
+  .piece.dragging,.opening.dragging{opacity:.88;z-index:40;transform:none}
+  .piece .sizeTag{
+    position:absolute;
+    right:2px;
+    bottom:2px;
+    font-size:9px;
+    font-weight:600;
+    color:#111;
+    background:#fff;
+    border:1px solid #bbb;
+    padding:1px 3px;
+    border-radius:0;
+  }
+  .opening.door{background:#e5e5e5}
+  .opening.window{background:#e8f1fb;border-color:#111;color:#111}
+  .doorArc{position:absolute;border:1px dashed #111;border-left:0;border-bottom:0;border-radius:0;opacity:.55;pointer-events:none}
+  .guide{position:absolute;pointer-events:none;background:#111;z-index:35;box-shadow:none}
+  #guideX{width:1px;top:0;bottom:0;display:none}
+  #guideY{height:1px;left:0;right:0;display:none}
+  .runLabel{
+    position:absolute;
+    background:#111;
+    color:#fff;
+    font-size:10px;
+    font-weight:600;
+    border-radius:0;
+    padding:4px 8px;
+    pointer-events:none;
+    z-index:4;
+    box-shadow:none;
+  }
+
+  .catalogTools{display:grid;grid-template-columns:1fr 120px;gap:8px;margin-bottom:10px}
+  .typeButtons{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:0;
+    margin-bottom:10px;
+    padding:0;
+    border:1px solid var(--line);
+    border-radius:0;
+    background:#fff;
+  }
+  .typeButtons button{
+    border:0;
+    border-right:1px solid var(--line);
+    background:#fff;
+    box-shadow:none;
+    font-size:12px;
+    padding:9px 6px;
+  }
+  .typeButtons button:last-child{border-right:0}
+  .typeButtons button.active{
+    background:#111;
+    color:#fff;
+    box-shadow:none;
+  }
+  .catalogList{display:grid;gap:10px}
+  .catItem{
+    border:1px solid var(--line);
+    border-radius:0;
+    padding:12px;
+    background:#fff;
+    box-shadow:none;
+    transition:border-color .12s ease,background .12s ease;
+  }
+  .catItem:hover{
+    transform:none;
+    box-shadow:none;
+    border-color:#111;
+    background:#fafafa;
+  }
+  .catTop{display:flex;justify-content:space-between;gap:8px}
+  .catTitle{font-weight:700;font-size:13px;line-height:1.25;letter-spacing:0}
+  .catMeta{font-size:12px;color:#666;line-height:1.35;margin-top:5px}
+  .badge{
+    background:#f4f4f4;
+    color:#111;
+    border:1px solid var(--line);
+    border-radius:0;
+    padding:5px 8px;
+    font-size:11px;
+    font-weight:600;
+    white-space:nowrap;
+    height:max-content;
+    text-transform:capitalize;
+  }
+
+  .propBox,.quoteBox{
+    border:1px solid var(--line);
+    background:#fff;
+    border-radius:0;
+    padding:12px;
+    box-shadow:none;
+  }
+  .movePad{
+    display:grid;
+    grid-template-columns:42px 42px 42px;
+    gap:7px;
+    justify-content:center;
+    align-items:center;
+    margin:10px 0;
+    padding:8px;
+    border-radius:0;
+    background:#fafafa;
+    border:1px solid var(--line);
+  }
+  .quoteTable{width:100%;border-collapse:separate;border-spacing:0;font-size:12px}
+  .quoteTable th,.quoteTable td{border-bottom:1px solid var(--line);padding:8px 4px;vertical-align:top}
+  .quoteTable th{text-align:left;color:#555;font-size:11px;text-transform:uppercase;letter-spacing:.03em}
+  .quoteTotal{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-weight:700;
+    font-size:18px;
+    padding-top:12px;
+    letter-spacing:0;
+  }
+  .checkRow{
+    display:grid;
+    grid-template-columns:24px 1fr 96px;
+    gap:8px;
+    align-items:center;
+    margin-bottom:10px;
+    padding:9px;
+    border-radius:0;
+    border:1px solid var(--line);
+    background:#fff;
+  }
+  .checkRow input[type=checkbox]{width:18px;height:18px;accent-color:#111}
+  .pill{
+    display:inline-flex;
+    align-items:center;
+    border-radius:0;
+    padding:5px 9px;
+    background:#f4f4f4;
+    color:#555;
+    font-size:12px;
+    font-weight:600;
+    margin:2px 4px 2px 0;
+  }
+  .wizardNav{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    margin-top:14px;
+    padding-top:12px;
+    border-top:1px solid var(--line);
+  }
+  .wizardNav button{flex:1}
+
+  .healthCard{
+    display:grid;
+    grid-template-columns:86px 1fr;
+    gap:12px;
+    align-items:center;
+    border:1px solid var(--line);
+    background:#fff;
+    border-radius:0;
+    padding:12px;
+    box-shadow:none;
+  }
+  .scoreRing{
+    width:72px;
+    height:72px;
+    border-radius:999px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    background:
+      radial-gradient(circle at center, #fff 0 52%, transparent 53%),
+      conic-gradient(var(--good) var(--score,100%), #e5e5e5 0);
+    box-shadow:none;
+    border:1px solid var(--line);
+  }
+  .scoreRing div{font-size:21px;font-weight:700;line-height:1;letter-spacing:0}
+  .scoreRing span{font-size:10px;color:#666;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-top:3px}
+  .scoreTitle{font-size:14px;font-weight:700;letter-spacing:0;margin-bottom:3px}
+  .warningList{display:grid;gap:8px;margin-top:10px}
+  .warnItem{
+    border:1px solid var(--line);
+    border-radius:0;
+    padding:10px 11px;
+    background:#fafafa;
+    display:grid;
+    grid-template-columns:24px 1fr;
+    gap:8px;
+    align-items:start;
+    font-size:12px;
+    line-height:1.35;
+    color:#555;
+  }
+  .warnItem b{color:#111}
+  .warnItem.good{background:var(--goodSoft);border-color:#b9e4dc;color:#075e57}
+  .warnItem.warn{background:var(--warnSoft);border-color:#f1d58f;color:#7a4c04}
+  .warnItem.err{background:var(--dangerSoft);border-color:#f3b7b7;color:#8f1717}
+  .warnIcon{
+    width:22px;
+    height:22px;
+    border-radius:999px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+    background:#e5e5e5;
+    color:#111;
+  }
+  .warnItem.good .warnIcon{background:#d9f5ef;color:#075e57}
+  .warnItem.warn .warnIcon{background:#f9e8ad;color:#7a4c04}
+  .warnItem.err .warnIcon{background:#f7c7c7;color:#8f1717}
+  #undoBtn,#redoBtn{background:#fff}
+  #undoBtn:hover,#redoBtn:hover{background:#111;color:#fff}
+  #undoBtn:disabled,#redoBtn:disabled{opacity:.45}
+
+  ::-webkit-scrollbar{width:12px;height:12px}
+  ::-webkit-scrollbar-track{background:#f2f0ea}
+  ::-webkit-scrollbar-thumb{background:#c6c2b8;border:3px solid #f2f0ea}
+  ::-webkit-scrollbar-thumb:hover{background:#aaa59b}
+
+  @media(max-width:1320px){
+    .app{grid-template-columns:1fr;height:auto;min-height:0}
+    aside,.workspace{min-height:auto}
+    .left,.right{border:1px solid var(--line)}
+    .workspace{min-height:760px}
+    .stageWrap{justify-content:flex-start}
+  }
+  @media(max-width:760px){
+    header{padding:14px}
+    h1{font-size:20px}
+    .app{padding:8px;gap:8px}
+    .section{padding:14px}
+    .layoutGrid{grid-template-columns:1fr}
+    .row,.row3,.catalogTools,.checkRow{grid-template-columns:1fr}
+    .progress{grid-template-columns:1fr}
+    .progress button{border-right:0;border-bottom:1px solid var(--line)}
+    .progress button:last-child{border-bottom:0}
+    .stageWrap{padding:14px;min-width:760px}
+  }
+  @media print{
+    header,aside,.stageHeader{display:none}
+    body{background:#fff}
+    body:before{display:none}
+    .app{display:block;height:auto;padding:0}
+    .workspace{overflow:visible;background:#fff;border:0;box-shadow:none}
+    .stageWrap{padding:0;min-width:0;background:#fff}
+    #stage{box-shadow:none;transform:none!important}
+  }
+
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>Super Cabinets Kitchen Design Planner</h1>
+    <div class="subtitle">Design a White Shaker cabinet layout, then contact us for pricing, availability, measurements, and order support.</div>
+    <div class="siteMiniNav"><a href="https://supercabinets.net/" target="_blank">Home</a><a href="https://supercabinets.net/collections" target="_blank">Shop Cabinets</a><a href="https://supercabinets.net/pages/contact" target="_blank">Contact</a></div>
+  </div>
+  <div class="toolbar">
+    <button class="primary" id="saveBtn">Save</button>
+    <button id="loadBtn">Load</button>
+    <button id="printBtn">Print</button>
+  </div>
+</header>
+
+<div class="app">
+  <aside class="left">
+    <div class="section">
+      <h2>Design Your Kitchen</h2>
+      <div class="progress">
+        <button data-step="1" class="active">1 Layout</button>
+        <button data-step="2">2 Size</button>
+        <button data-step="3">3 Appliance</button>
+        <button data-step="4">4 Generate</button>
+        <button data-step="5">5 Edit</button>
+      </div>
+
+      <div id="step1">
+        <div class="hint" style="margin-bottom:8px">Choose a starting layout. You can still manually move everything after generation.</div>
+        <div class="status">
+          <b>How to order:</b><br>
+          1. Choose your cabinet type, size, and quantity.<br>
+          2. Use this planner or send measurements for help.<br>
+          3. Confirm pickup, delivery, or shipping before finalizing your order.
+        </div>
+
+        <div class="layoutGrid">
+          <div class="layoutCard active" data-layout="single">
+            <div class="layoutTitle">One Wall</div>
+            <div class="layoutDrawing one"><div class="bar bar1"></div></div>
+            <div class="hint">Small ADU, studio, straight kitchen.</div>
+          </div>
+          <div class="layoutCard" data-layout="l">
+            <div class="layoutTitle">L-Shape</div>
+            <div class="layoutDrawing lshape"><div class="bar bar1"></div><div class="bar bar2"></div></div>
+            <div class="hint">Most common corner layout.</div>
+          </div>
+          <div class="layoutCard" data-layout="u">
+            <div class="layoutTitle">U-Shape</div>
+            <div class="layoutDrawing ushape"><div class="bar bar1"></div><div class="bar bar2"></div><div class="bar bar3"></div></div>
+            <div class="hint">Three cabinet runs.</div>
+          </div>
+          <div class="layoutCard" data-layout="galley">
+            <div class="layoutTitle">Galley</div>
+            <div class="layoutDrawing galley"><div class="bar bar1"></div><div class="bar bar2"></div></div>
+            <div class="hint">Two opposite cabinet runs.</div>
+          </div>
+          <div class="layoutCard" data-layout="island">
+            <div class="layoutTitle">Wall + Island</div>
+            <div class="layoutDrawing island"><div class="bar bar1"></div><div class="bar bar2"></div></div>
+            <div class="hint">Straight wall plus island.</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="step2" class="hidden">
+        <div class="row">
+          <div><label>Room width</label><input id="roomW" type="number" min="36" step="0.5"></div>
+          <div><label>Room depth</label><input id="roomD" type="number" min="36" step="0.5"></div>
+        </div>
+        <div class="row">
+          <div>
+            <label>Display unit</label>
+            <select id="unit">
+              <option value="in">Inches</option>
+              <option value="ft">Feet</option>
+            </select>
+          </div>
+          <div>
+            <label>Drag snap</label>
+            <select id="snap">
+              <option value="0">Off / free move</option>
+              <option value="0.5">1/2"</option>
+              <option value="1" selected>1"</option>
+              <option value="3">3"</option>
+              <option value="6">6"</option>
+              <option value="12">12"</option>
+            </select>
+          </div>
+        </div>
+        <div id="runInputs"></div>
+        <div class="toolbar">
+          <button class="blue" id="applyRoom">Apply size</button>
+          <button id="fitBtn">Fit view</button>
+          <button id="gridBtn">Grid</button>
+        </div>
+        <div class="status warn">
+          Cabinet run length means the wall length you want filled with cabinets, not necessarily the full room length.
+        </div>
+      </div>
+
+      <div id="step3" class="hidden">
+        <div class="hint" style="margin-bottom:8px">Choose major fixtures. The generator will place them in a simple cabinet run, then you can move them.</div>
+        <div class="checkRow"><input id="useSink" type="checkbox" checked><label for="useSink">Sink base</label><select id="sinkSize"><option value="30">30"</option><option value="36" selected>36"</option></select></div>
+        <div class="checkRow"><input id="useDishwasher" type="checkbox" checked><label for="useDishwasher">Dishwasher</label><select id="dwSize"><option value="24" selected>24"</option></select></div>
+        <div class="checkRow"><input id="useRange" type="checkbox" checked><label for="useRange">Range / stove</label><select id="rangeSize"><option value="30" selected>30"</option><option value="36">36"</option></select></div>
+        <div class="checkRow"><input id="useFridge" type="checkbox" checked><label for="useFridge">Fridge placeholder</label><select id="fridgeSize"><option value="30">30"</option><option value="33">33"</option><option value="36" selected>36"</option></select></div>
+        <div class="row">
+          <div><label>Wall cabinet height label</label><select id="wallHeight"><option value="30" selected>30"</option><option value="36">36"</option><option value="42">42"</option></select></div>
+          <div><label>Style</label><select id="styleChoice"><option>White Shaker</option></select></div>
+        </div>
+        <div class="status">
+          This planner helps prepare a cabinet quote request. Final order support should confirm fillers, panels, toe kicks, trim, clearance, and appliance sizes.
+        </div>
+      </div>
+
+      <div id="step4" class="hidden">
+        <div class="hint">Generate a first draft from your selected layout. It will use your catalog sizes when possible.</div>
+        <div class="toolbar" style="margin-top:10px">
+          <button class="good" id="generateBtn">Generate kitchen</button>
+          <button id="clearBtn">Clear layout</button>
+        </div>
+        <div id="genStatus" class="status warn">
+          The generator uses common cabinet widths: 36, 30, 24, 21, 18, 15, 12, 9. Leftover space becomes filler.
+        </div>
+      </div>
+
+      <div id="step5" class="hidden">
+        <div class="hint">
+          Manual editing is always available. Select an item, drag it, use arrow keys, or type exact X/Y values on the right.
+        </div>
+        <div class="toolbar" style="margin-top:10px">
+          <button id="addDoor">+ Door</button>
+          <button id="addWindow">+ Window</button>
+        </div>
+        <div class="status good">
+          Precision: Arrow = 1", Shift + Arrow = 6", Alt + Arrow = 1/2". Hold Alt while dragging for free movement.
+        </div>
+      </div>
+
+      <div class="wizardNav">
+        <button id="prevStep">Back</button>
+        <button class="blue" id="nextStep">Next</button>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Shop Cabinet Types</h2>
+      <div class="catalogTools">
+        <input id="catalogSearch" placeholder="Search B24, sink, pantry...">
+        <button id="refreshShopify">Fetch Shopify</button>
+      </div>
+      <div class="typeButtons">
+        <button data-type="" class="active">All</button>
+        <button data-type="base">Base</button>
+        <button data-type="wall">Wall</button>
+        <button data-type="tall">Tall</button>
+      </div>
+      <div id="catalog" class="catalogList"></div>
+    </div>
+  </aside>
+
+  <main class="workspace">
+    <div class="stageHeader">
+      <div class="toolbar">
+        <button id="zoomOut">− Zoom</button>
+        <button id="zoomIn">+ Zoom</button>
+        <button id="rotateBtn">Rotate</button>
+        <button id="dupBtn">Duplicate</button>
+        <button class="danger" id="delBtn">Delete</button>
+        <button id="undoBtn" title="Undo last change">Undo</button>
+        <button id="redoBtn" title="Redo last change">Redo</button>
+      </div>
+      <div class="info" id="stageInfo"></div>
+    </div>
+    <div class="stageWrap">
+      <div id="stage" class="grid">
+        <div id="dimWidth" class="dimLine"></div>
+        <div id="dimDepth" class="dimLine"></div>
+        <div id="guideX" class="guide"></div>
+        <div id="guideY" class="guide"></div>
+      </div>
+    </div>
+  </main>
+
+  <aside class="right">
+    <div class="section">
+      <h2>Selected item</h2>
+      <div id="propsEmpty" class="hint">Select a cabinet, door, or window. You can type exact position and size.</div>
+      <div id="props" class="propBox hidden">
+        <div class="row">
+          <div><label>Name</label><input id="pName"></div>
+          <div><label>SKU</label><input id="pSku"></div>
+        </div>
+        <div class="row3">
+          <div><label>Width</label><input id="pW" type="number" step="0.5" min="0.5"></div>
+          <div><label>Depth</label><input id="pD" type="number" step="0.5" min="0.5"></div>
+          <div><label>Price</label><input id="pPrice" type="number" step="0.01" min="0"></div>
+        </div>
+        <div class="row">
+          <div><label>X from left wall</label><input id="pX" type="number" step="0.5"></div>
+          <div><label>Y from top wall</label><input id="pY" type="number" step="0.5"></div>
+        </div>
+        <div class="movePad">
+          <div></div><button class="icon" data-move="up">↑</button><div></div>
+          <button class="icon" data-move="left">←</button><button class="icon" id="rotateProp">⟳</button><button class="icon" data-move="right">→</button>
+          <div></div><button class="icon" data-move="down">↓</button><div></div>
+        </div>
+        <div class="row">
+          <button class="blue" id="updateProp">Update</button>
+          <button id="lockWallBtn">Snap to wall</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Quote</h2>
+      <div class="quoteBox">
+        <table class="quoteTable">
+          <thead><tr><th>Qty</th><th>Item</th><th>Total</th></tr></thead>
+          <tbody id="quoteBody"></tbody>
+        </table>
+        <div class="quoteTotal"><span>Total</span><span id="quoteTotal">$0.00</span></div>
+      </div>
+      <div class="toolbar" style="margin-top:10px">
+        <button id="csvBtn">CSV</button>
+        <button id="jsonBtn">JSON</button>
+        <button id="svgBtn">SVG</button>
+        <button class="good" id="cartBtn">Shopify cart</button>
+      </div>
+      <div id="cartStatus" class="status">Add Shopify variant IDs in Catalog JSON to make the cart button work.</div>
+    </div>
+
+
+    <div class="section">
+      <h2>Design Health</h2>
+      <div class="healthCard">
+        <div class="scoreRing">
+          <div id="designScoreNum">100</div>
+          <span>score</span>
+        </div>
+        <div>
+          <div id="designScoreTitle" class="scoreTitle">Ready for quote review</div>
+          <div id="designScoreSub" class="hint">Add cabinets or generate a guided layout to start checking.</div>
+        </div>
+      </div>
+      <div id="designWarnings" class="warningList"></div>
+      <div class="toolbar" style="margin-top:10px">
+        <button id="copySummaryBtn">Copy summary</button>
+        <button id="shareLinkBtn">Copy share link</button>
+      </div>
+      <div id="v5Status" class="status">Use this design as a starting point. Final cabinet pricing, availability, measurements, and order support should be confirmed before ordering.</div>
+    </div>
+
+    <div class="section">
+      <h2>Contact / Order Support</h2>
+      <div class="row">
+        <div><label>Name</label><input id="leadName" placeholder="Customer name"></div>
+        <div><label>Phone / Email</label><input id="leadContact" placeholder="Phone, email, or WeChat"></div>
+      </div>
+      <div>
+        <label>Notes</label>
+        <textarea id="leadNotes" style="min-height:86px" placeholder="Example: wants white shaker, pickup in LA, need installer, has measurements..."></textarea>
+      </div>
+      <div class="toolbar" style="margin-top:10px">
+        <button class="blue" id="copyLeadBtn">Copy lead package</button>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Data / embed</h2>
+      <div class="tabs">
+        <div class="tab active" data-tab="designTab">Design</div>
+        <div class="tab" data-tab="catalogTab">Catalog</div>
+        <div class="tab" data-tab="embedTab">Embed</div>
+      </div>
+      <div id="designTab">
+        <textarea id="designText" placeholder="Exported/imported design JSON"></textarea>
+        <div class="toolbar">
+          <button class="blue" id="importJsonBtn">Import design</button>
+        </div>
+      </div>
+      <div id="catalogTab" class="hidden">
+        <textarea id="catalogText"></textarea>
+        <div class="toolbar">
+          <button class="blue" id="applyCatalog">Apply catalog</button>
+          <button id="resetCatalog">Reset sample</button>
+        </div>
+        <div class="hint">Required: title, sku, type, width, depth, price. Optional: handle, variantId.</div>
+      </div>
+      <div id="embedTab" class="hidden">
+        <div class="hint">
+          Shopify embed:<br><br>
+          <code>&lt;iframe src="PASTE-FILE-URL-HERE" style="width:100%;height:980px;border:0;"&gt;&lt;/iframe&gt;</code>
+          <br><br>
+          Best free hosting: GitHub Pages or Cloudflare Pages. Shopify Files may work, but some themes block iframe behavior.
+        </div>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<script>
+const sampleCatalog = [
+  {title:"White Shaker Base Cabinet 9", sku:"B09", type:"base", width:9, depth:24, price:108, handle:"", variantId:""},
+  {title:"White Shaker Base Cabinet 12", sku:"B12", type:"base", width:12, depth:24, price:126, handle:"", variantId:""},
+  {title:"White Shaker Base Cabinet 15", sku:"B15", type:"base", width:15, depth:24, price:145, handle:"", variantId:""},
+  {title:"White Shaker Base Cabinet 18", sku:"B18", type:"base", width:18, depth:24, price:165, handle:"", variantId:""},
+  {title:"White Shaker Base Cabinet 21", sku:"B21", type:"base", width:21, depth:24, price:185, handle:"", variantId:""},
+  {title:"White Shaker Base Cabinet 24", sku:"B24", type:"base", width:24, depth:24, price:205, handle:"", variantId:""},
+  {title:"White Shaker Base Cabinet 30", sku:"B30", type:"base", width:30, depth:24, price:248, handle:"", variantId:""},
+  {title:"White Shaker Base Cabinet 36", sku:"B36", type:"base", width:36, depth:24, price:295, handle:"", variantId:""},
+  {title:"White Shaker Sink Base 30", sku:"SB30", type:"base", width:30, depth:24, price:238, handle:"", variantId:""},
+  {title:"White Shaker Sink Base 36", sku:"SB36", type:"base", width:36, depth:24, price:286, handle:"", variantId:""},
+  {title:"White Shaker Lazy Susan Corner", sku:"LS36", type:"base", width:36, depth:36, price:398, handle:"", variantId:""},
+  {title:"White Shaker Wall Cabinet 12x30", sku:"W1230", type:"wall", width:12, depth:12, price:96, handle:"", variantId:""},
+  {title:"White Shaker Wall Cabinet 15x30", sku:"W1530", type:"wall", width:15, depth:12, price:112, handle:"", variantId:""},
+  {title:"White Shaker Wall Cabinet 18x30", sku:"W1830", type:"wall", width:18, depth:12, price:129, handle:"", variantId:""},
+  {title:"White Shaker Wall Cabinet 24x30", sku:"W2430", type:"wall", width:24, depth:12, price:168, handle:"", variantId:""},
+  {title:"White Shaker Wall Cabinet 30x30", sku:"W3030", type:"wall", width:30, depth:12, price:205, handle:"", variantId:""},
+  {title:"White Shaker Wall Cabinet 36x30", sku:"W3630", type:"wall", width:36, depth:12, price:242, handle:"", variantId:""},
+  {title:"White Shaker Pantry 18x84", sku:"PAN1884", type:"tall", width:18, depth:24, price:472, handle:"", variantId:""},
+  {title:"White Shaker Pantry 24x84", sku:"PAN2484", type:"tall", width:24, depth:24, price:558, handle:"", variantId:""},
+  {title:"Range / Stove Placeholder 30", sku:"RANGE30", type:"appliance", width:30, depth:25, price:0, handle:"", variantId:""},
+  {title:"Fridge Placeholder 36", sku:"FRIDGE36", type:"appliance", width:36, depth:30, price:0, handle:"", variantId:""},
+  {title:"Dishwasher Placeholder 24", sku:"DW24", type:"appliance", width:24, depth:24, price:0, handle:"", variantId:""}
+];
+
+let state = {
+  step:1,
+  layout:"single",
+  roomW:144,
+  roomD:120,
+  unit:"in",
+  snap:1,
+  scale:5,
+  zoom:1,
+  catalog: JSON.parse(JSON.stringify(sampleCatalog)),
+  pieces:[],
+  selectedId:null,
+  nextId:1,
+  typeFilter:"",
+  runs:{top:120,left:96,right:96,bottom:120,island:72}
+};
+
+const $ = id => document.getElementById(id);
+const stage = $("stage");
+const guideX = $("guideX");
+const guideY = $("guideY");
+let activeDrag = null;
+
+const money = n => (Number(n)||0).toLocaleString("en-US",{style:"currency",currency:"USD"});
+const clamp = (n,min,max)=>Math.max(min,Math.min(max,n));
+const uid = ()=>"p"+(state.nextId++);
+const escapeHtml = s=>String(s||"").replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const escapeXml = s=>String(s||"").replace(/[<>&'"]/g,m=>({'<':'&lt;','>':'&gt;','&':'&amp;',"'":'&apos;','"':'&quot;'}[m]));
+const roundNice = n=>Math.round(n*100)/100;
+function snapVal(n, forceStep=null){const s=forceStep!==null?forceStep:Number(state.snap); if(!s)return roundNice(n); return roundNice(Math.round(n/s)*s);}
+function unitLabel(v){return state.unit==="ft"?`${roundNice(v/12)} ft`:`${roundNice(v)}"`;}
+function itemSize(p){return {w:p.rotated?Number(p.depth):Number(p.width),d:p.rotated?Number(p.width):Number(p.depth)}}
+function keepInside(p){const sz=itemSize(p);p.x=clamp(Number(p.x)||0,0,Math.max(0,state.roomW-sz.w));p.y=clamp(Number(p.y)||0,0,Math.max(0,state.roomD-sz.d));}
+function setStatus(el,msg,type=""){el.className="status "+type;el.innerHTML=msg;}
+
+function updateStep(){
+  for(let i=1;i<=5;i++) $("step"+i).classList.toggle("hidden", i!==state.step);
+  document.querySelectorAll(".progress button").forEach(btn=>{
+    const n=Number(btn.dataset.step);
+    btn.classList.toggle("active", n===state.step);
+    btn.classList.toggle("done", n<state.step);
+  });
+  $("prevStep").disabled = state.step===1;
+  $("nextStep").textContent = state.step===5 ? "Finish" : "Next";
+  renderRunInputs();
+}
+function goStep(n){state.step=clamp(n,1,5); updateStep();}
+function nextStep(){ if(state.step<5) goStep(state.step+1); }
+function prevStep(){ if(state.step>1) goStep(state.step-1); }
+
+function renderRunInputs(){
+  const wrap=$("runInputs");
+  const layout=state.layout;
+  let html="";
+  const input=(key,label)=>`<div><label>${label}</label><input data-run="${key}" type="number" min="0" step="0.5" value="${roundNice(state.runs[key]||0)}"></div>`;
+  if(layout==="single") html=`<div class="row">${input("top","Cabinet run length")}${input("top","Same run")}</div>`;
+  if(layout==="l") html=`<div class="row">${input("top","Back wall run")}${input("left","Left wall run")}</div>`;
+  if(layout==="u") html=`<div class="row3">${input("left","Left run")}${input("top","Back run")}${input("right","Right run")}</div>`;
+  if(layout==="galley") html=`<div class="row">${input("top","Top wall run")}${input("bottom","Bottom wall run")}</div>`;
+  if(layout==="island") html=`<div class="row">${input("top","Wall run")}${input("island","Island length")}</div>`;
+  wrap.innerHTML=html;
+  wrap.querySelectorAll("[data-run]").forEach(inp=>inp.addEventListener("input",()=>{state.runs[inp.dataset.run]=Number(inp.value)||0;}));
+}
+
+function applyRoom(){
+  let w=Number($("roomW").value)||144;
+  let d=Number($("roomD").value)||120;
+  const selectedUnit=$("unit").value;
+  if(selectedUnit==="ft"){w*=12;d*=12;}
+  state.unit=selectedUnit;
+  state.snap=Number($("snap").value);
+  state.roomW=clamp(w,36,1200);
+  state.roomD=clamp(d,36,1200);
+  document.querySelectorAll("[data-run]").forEach(inp=>{state.runs[inp.dataset.run]=Number(inp.value)||0;});
+  state.pieces.forEach(keepInside);
+  fitZoom(false);
+  draw();
+}
+function fitZoom(shouldDraw=true){
+  const availableW=Math.max(540,window.innerWidth-790);
+  const availableD=Math.max(430,window.innerHeight-160);
+  const zw=availableW/(state.roomW*state.scale);
+  const zd=availableD/(state.roomD*state.scale);
+  state.zoom=clamp(Math.min(zw,zd),.22,2.2);
+  if(shouldDraw) draw();
+}
+
+function draw(){
+  $("roomW").value=state.unit==="ft"?roundNice(state.roomW/12):roundNice(state.roomW);
+  $("roomD").value=state.unit==="ft"?roundNice(state.roomD/12):roundNice(state.roomD);
+  $("unit").value=state.unit;
+  $("snap").value=String(state.snap);
+  const pxW=state.roomW*state.scale, pxD=state.roomD*state.scale;
+  stage.style.width=pxW+"px";
+  stage.style.height=pxD+"px";
+  stage.style.transform=`scale(${state.zoom})`;
+  stage.style.marginBottom=Math.max(0,(state.zoom-1)*pxD)+"px";
+  $("dimWidth").textContent=unitLabel(state.roomW);
+  $("dimDepth").textContent=unitLabel(state.roomD);
+  $("stageInfo").textContent=`Layout ${state.layout.toUpperCase()} | Room ${unitLabel(state.roomW)} × ${unitLabel(state.roomD)} | Zoom ${(state.zoom*100).toFixed(0)}% | Snap ${state.snap?state.snap+'"':"off"}`;
+
+  [...stage.querySelectorAll(".piece,.opening,.doorArc,.runLabel")].forEach(el=>el.remove());
+  drawRunLabels();
+
+  for(const p of state.pieces){
+    const sz=itemSize(p);
+    const el=document.createElement("div");
+    el.dataset.id=p.id;
+    el.className=p.kind==="cabinet"?`piece ${p.type||"base"}`:`opening ${p.kind}`;
+    if(p.id===state.selectedId) el.classList.add("selected");
+    el.style.left=(p.x*state.scale)+"px";
+    el.style.top=(p.y*state.scale)+"px";
+    el.style.width=Math.max(16,sz.w*state.scale)+"px";
+    el.style.height=Math.max(16,sz.d*state.scale)+"px";
+    if(p.kind==="cabinet"){
+      el.innerHTML=`<div>${escapeHtml(p.sku||p.title)}</div><div class="sizeTag">${roundNice(sz.w)}×${roundNice(sz.d)}</div>`;
+    }else{
+      el.textContent=p.kind==="door"?"DOOR":"WINDOW";
+      if(p.kind==="door"){
+        const arc=document.createElement("div");
+        arc.className="doorArc";
+        arc.style.left=(p.x*state.scale)+"px";
+        arc.style.top=(p.y*state.scale)+"px";
+        arc.style.width=(p.width*state.scale)+"px";
+        arc.style.height=(p.width*state.scale)+"px";
+        stage.appendChild(arc);
+      }
+    }
+    el.addEventListener("pointerdown",startDrag);
+    el.addEventListener("click",e=>{e.stopPropagation();selectPiece(p.id);});
+    stage.appendChild(el);
+  }
+  renderProps();
+  renderQuote();
+  renderCatalogText();
+}
+function drawRunLabels(){
+  const labels=[];
+  const rs=state.runs;
+  if(["single","l","u","galley","island"].includes(state.layout)) labels.push({txt:`Top run ${rs.top}"`,x:4,y:30});
+  if(["l","u"].includes(state.layout)) labels.push({txt:`Left run ${rs.left}"`,x:4,y:80});
+  if(state.layout==="u") labels.push({txt:`Right run ${rs.right}"`,x:state.roomW*state.scale-100,y:80});
+  if(state.layout==="galley") labels.push({txt:`Bottom run ${rs.bottom}"`,x:4,y:state.roomD*state.scale-34});
+  if(state.layout==="island") labels.push({txt:`Island ${rs.island}"`,x:(state.roomW*state.scale/2)-40,y:(state.roomD*state.scale/2)-20});
+  labels.forEach(l=>{
+    const el=document.createElement("div");
+    el.className="runLabel";
+    el.textContent=l.txt;
+    el.style.left=l.x+"px";
+    el.style.top=l.y+"px";
+    stage.appendChild(el);
+  });
+}
+function drawOne(p){
+  const el=stage.querySelector(`[data-id="${p.id}"]`);
+  if(!el)return;
+  const sz=itemSize(p);
+  el.style.left=(p.x*state.scale)+"px";
+  el.style.top=(p.y*state.scale)+"px";
+  el.style.width=Math.max(16,sz.w*state.scale)+"px";
+  el.style.height=Math.max(16,sz.d*state.scale)+"px";
+  if(p.kind==="cabinet") el.innerHTML=`<div>${escapeHtml(p.sku||p.title)}</div><div class="sizeTag">${roundNice(sz.w)}×${roundNice(sz.d)}</div>`;
+  if(p.kind==="door") draw();
+  renderProps(false);
+  $("stageInfo").textContent=`Selected: ${p.sku||p.title} | X ${roundNice(p.x)}" | Y ${roundNice(p.y)}" | Hold Alt = free move`;
+}
+function selectPiece(id){state.selectedId=id;draw();}
+function getSelected(){return state.pieces.find(p=>p.id===state.selectedId);}
+
+function startDrag(e){
+  if(e.button!==undefined&&e.button!==0)return;
+  e.preventDefault();
+  const id=e.currentTarget.dataset.id;
+  const p=state.pieces.find(x=>x.id===id);
+  if(!p)return;
+  state.selectedId=id;
+  document.querySelectorAll(".selected").forEach(el=>el.classList.remove("selected"));
+  e.currentTarget.classList.add("selected","dragging");
+  activeDrag={id,el:e.currentTarget,startX:e.clientX,startY:e.clientY,origX:Number(p.x)||0,origY:Number(p.y)||0,raf:null};
+  e.currentTarget.setPointerCapture(e.pointerId);
+  window.addEventListener("pointermove",onDrag);
+  window.addEventListener("pointerup",endDrag,{once:true});
+  renderProps();
+}
+function onDrag(e){
+  if(!activeDrag)return;
+  const p=state.pieces.find(x=>x.id===activeDrag.id);
+  if(!p)return;
+  const dx=(e.clientX-activeDrag.startX)/state.zoom/state.scale;
+  const dy=(e.clientY-activeDrag.startY)/state.zoom/state.scale;
+  const forceStep=e.altKey?0:null;
+  p.x=snapVal(activeDrag.origX+dx,forceStep);
+  p.y=snapVal(activeDrag.origY+dy,forceStep);
+  keepInside(p);
+  if(!activeDrag.raf){
+    activeDrag.raf=requestAnimationFrame(()=>{activeDrag.raf=null;drawOne(p);showGuides(p);});
+  }
+}
+function endDrag(){
+  if(!activeDrag)return;
+  activeDrag.el.classList.remove("dragging");
+  activeDrag=null;
+  hideGuides();
+  draw();
+  window.removeEventListener("pointermove",onDrag);
+}
+function showGuides(p){guideX.style.left=(p.x*state.scale)+"px";guideY.style.top=(p.y*state.scale)+"px";guideX.style.display="block";guideY.style.display="block";}
+function hideGuides(){guideX.style.display="none";guideY.style.display="none";}
+
+function findProduct(type,width,skuPrefix=""){
+  width=Number(width);
+  let products=state.catalog.filter(p=>p.type===type && Number(p.width)===width);
+  if(skuPrefix) products=products.filter(p=>String(p.sku).toUpperCase().startsWith(skuPrefix));
+  return products[0] || state.catalog.find(p=>p.type===type && Number(p.width)===width) || null;
+}
+function makeProductItem(product,x,y,rotated=false,override={}){
+  const p={
+    id:uid(),kind:"cabinet",
+    title:product?.title || override.title || "Custom Item",
+    sku:product?.sku || override.sku || "CUSTOM",
+    type:override.type || product?.type || "base",
+    width:Number(override.width || product?.width || 24),
+    depth:Number(override.depth || product?.depth || 24),
+    price:Number(override.price ?? product?.price ?? 0),
+    handle:product?.handle||"",
+    variantId:product?.variantId||"",
+    x:snapVal(x),y:snapVal(y),rotated
+  };
+  keepInside(p);
+  return p;
+}
+function addPiece(product){
+  const y = product.type==="wall" ? 0 : Math.max(0,state.roomD-Number(product.depth||24));
+  const p=makeProductItem(product,12,y,false);
+  state.pieces.push(p);state.selectedId=p.id;draw();
+}
+function addOpening(kind){
+  const p={id:uid(),kind,title:kind==="door"?"Door":"Window",sku:kind.toUpperCase(),type:"appliance",width:kind==="door"?36:48,depth:4,price:0,handle:"",variantId:"",x:12,y:0,rotated:false};
+  state.pieces.push(p);state.selectedId=p.id;draw();
+}
+
+function generateKitchen(){
+  applyRoom();
+  state.pieces=[];
+  const appliances=getAppliances();
+  const layout=state.layout;
+  if(layout==="single") generateRun("top",0,0,state.runs.top,"horizontal",appliances.primary);
+  if(layout==="l"){
+    generateRun("top",0,0,state.runs.top,"horizontal",appliances.primary);
+    generateRun("left",0,24,state.runs.left-24,"vertical",appliances.secondary);
+  }
+  if(layout==="u"){
+    generateRun("top",24,0,state.runs.top-48,"horizontal",appliances.primary);
+    generateRun("left",0,24,state.runs.left-24,"vertical",appliances.secondary);
+    generateRun("right",state.roomW-24,24,state.runs.right-24,"vertical",appliances.third,true);
+  }
+  if(layout==="galley"){
+    generateRun("top",0,0,state.runs.top,"horizontal",appliances.primary);
+    generateRun("bottom",0,state.roomD-24,state.runs.bottom,"horizontal",appliances.secondary);
+  }
+  if(layout==="island"){
+    generateRun("top",0,0,state.runs.top,"horizontal",appliances.primary);
+    generateRun("island",(state.roomW-state.runs.island)/2,(state.roomD/2)-12,state.runs.island,"horizontal",appliances.island);
+  }
+  state.selectedId=state.pieces[0]?.id || null;
+  draw();
+  setStatus($("genStatus"),`Generated ${state.pieces.filter(p=>p.kind==="cabinet").length} items. Review fillers, end panels, trim, toe kicks, appliance clearances, and final SKU list before ordering.`,"good");
+  goStep(5);
+}
+function getAppliances(){
+  const sink= $("useSink").checked ? {sku:"SB"+$("sinkSize").value,type:"base",width:Number($("sinkSize").value),kind:"sink"} : null;
+  const dw= $("useDishwasher").checked ? {sku:"DW"+$("dwSize").value,type:"appliance",width:Number($("dwSize").value),kind:"dw"} : null;
+  const range= $("useRange").checked ? {sku:"RANGE"+$("rangeSize").value,type:"appliance",width:Number($("rangeSize").value),kind:"range"} : null;
+  const fridge= $("useFridge").checked ? {sku:"FRIDGE"+$("fridgeSize").value,type:"appliance",width:Number($("fridgeSize").value),kind:"fridge"} : null;
+  return {
+    primary:[fridge,sink,dw,range].filter(Boolean),
+    secondary:[range].filter(Boolean),
+    third:[fridge].filter(Boolean),
+    island:[].filter(Boolean)
+  };
+}
+function generateRun(name,x,y,length,orientation,applianceList=[],reverse=false){
+  length=Math.max(0,Number(length)||0);
+  let cursor=0;
+  const depth=24;
+  const place=(itemWidth, item)=>{
+    let px=x, py=y, rotated=false;
+    if(orientation==="horizontal"){px=x+(reverse?length-cursor-itemWidth:cursor);py=y;rotated=false;}
+    else {px=x;py=y+(reverse?length-cursor-itemWidth:cursor);rotated=true;}
+    let prod=null, override={};
+    if(item){
+      if(item.kind==="sink") prod=findProduct("base",item.width,"SB");
+      if(item.kind==="dw") prod=findProduct("appliance",item.width,"DW");
+      if(item.kind==="range") prod=findProduct("appliance",item.width,"RANGE");
+      if(item.kind==="fridge") prod=findProduct("appliance",item.width,"FRIDGE");
+      override={title:item.kind==="sink"?`White Shaker Sink Base ${item.width}`:item.kind==="dw"?`Dishwasher Placeholder ${item.width}`:item.kind==="range"?`Range / Stove Placeholder ${item.width}`:`Fridge Placeholder ${item.width}`, sku:item.sku, type:item.type, width:item.width, depth:item.kind==="fridge"?30:depth, price:0};
+    }else{
+      prod=findProduct("base",itemWidth,"B");
+      override={title:`White Shaker Base Cabinet ${itemWidth}`, sku:"B"+String(itemWidth).padStart(2,"0"), type:"base", width:itemWidth, depth:depth};
+    }
+    const p=makeProductItem(prod,px,py,rotated,override);
+    state.pieces.push(p);
+    cursor += itemWidth;
+  };
+
+  const apps=applianceList.filter(a=>a && a.width < length-12);
+  let reserved=apps.reduce((sum,a)=>sum+a.width,0);
+  let available=length-reserved;
+  const firstFill=Math.max(0, Math.floor(available/2/3)*3);
+  fillBaseCabinets(firstFill, w=>place(w,null));
+  apps.forEach(a=>place(a.width,a));
+  fillBaseCabinets(length-cursor, w=>place(w,null));
+
+  const leftover=roundNice(length-cursor);
+  if(leftover>0.1){
+    let px=x,py=y,rotated=false;
+    if(orientation==="horizontal"){px=x+(reverse?0:cursor);py=y;}
+    else {px=x;py=y+(reverse?0:cursor);rotated=true;}
+    const filler=makeProductItem(null,px,py,rotated,{title:`Filler ${leftover}"`,sku:`FILL${leftover}`,type:"filler",width:leftover,depth:depth,price:0});
+    state.pieces.push(filler);
+  }
+
+  // add wall cabinets above/base along perimeter except island
+  if(name!=="island"){
+    const wallY = orientation==="horizontal" ? Math.max(0,y+26) : y;
+    const wallX = orientation==="horizontal" ? x : Math.min(state.roomW-12, x+26);
+    addWallRun(wallX, wallY, length, orientation, reverse);
+  }
+}
+function fillBaseCabinets(length, cb){
+  let left=Math.max(0,roundNice(length));
+  const sizes=[36,30,24,21,18,15,12,9];
+  while(left>=9){
+    let s=sizes.find(w=>w<=left+0.001);
+    if(!s)break;
+    cb(s);
+    left=roundNice(left-s);
+  }
+}
+function addWallRun(x,y,length,orientation,reverse=false){
+  let cursor=0;
+  const sizes=[36,30,24,18,15,12];
+  while(length-cursor>=12){
+    const remaining=length-cursor;
+    const s=sizes.find(w=>w<=remaining+0.001);
+    if(!s)break;
+    let px=x,py=y,rotated=false;
+    if(orientation==="horizontal"){px=x+(reverse?length-cursor-s:cursor);py=y;rotated=false;}
+    else {px=x;py=y+(reverse?length-cursor-s:cursor);rotated=true;}
+    const prod=findProduct("wall",s,"W");
+    const wh=$("wallHeight").value || "30";
+    const p=makeProductItem(prod,px,py,rotated,{title:`White Shaker Wall Cabinet ${s}x${wh}`,sku:`W${String(s).padStart(2,"0")}${wh}`,type:"wall",width:s,depth:12,price:prod?.price||0});
+    state.pieces.push(p);
+    cursor += s;
+  }
+}
+
+function rotateSelected(){const p=getSelected();if(!p)return;p.rotated=!p.rotated;keepInside(p);draw();}
+function duplicateSelected(){const p=getSelected();if(!p)return;const copy=JSON.parse(JSON.stringify(p));copy.id=uid();copy.x=snapVal(copy.x+3);copy.y=snapVal(copy.y+3);keepInside(copy);state.pieces.push(copy);state.selectedId=copy.id;draw();}
+function deleteSelected(){if(!state.selectedId)return;state.pieces=state.pieces.filter(p=>p.id!==state.selectedId);state.selectedId=null;draw();}
+function nudgeSelected(dir,step=1){const p=getSelected();if(!p)return;if(dir==="left")p.x-=step;if(dir==="right")p.x+=step;if(dir==="up")p.y-=step;if(dir==="down")p.y+=step;p.x=roundNice(p.x);p.y=roundNice(p.y);keepInside(p);draw();}
+function snapToNearestWall(){const p=getSelected();if(!p)return;const sz=itemSize(p);const distances=[{dist:p.y,x:p.x,y:0},{dist:state.roomD-(p.y+sz.d),x:p.x,y:state.roomD-sz.d},{dist:p.x,x:0,y:p.y},{dist:state.roomW-(p.x+sz.w),x:state.roomW-sz.w,y:p.y}].sort((a,b)=>a.dist-b.dist);p.x=snapVal(distances[0].x);p.y=snapVal(distances[0].y);keepInside(p);draw();}
+
+function renderProps(setValues=true){
+  const p=getSelected();
+  $("propsEmpty").classList.toggle("hidden",!!p);
+  $("props").classList.toggle("hidden",!p);
+  if(!p||!setValues)return;
+  $("pName").value=p.title||"";$("pSku").value=p.sku||"";$("pW").value=roundNice(p.width||0);$("pD").value=roundNice(p.depth||0);$("pPrice").value=roundNice(p.price||0);$("pX").value=roundNice(p.x||0);$("pY").value=roundNice(p.y||0);
+}
+function updateProps(){
+  const p=getSelected();if(!p)return;
+  p.title=$("pName").value;p.sku=$("pSku").value;p.width=Number($("pW").value)||1;p.depth=Number($("pD").value)||1;p.price=Number($("pPrice").value)||0;p.x=Number($("pX").value)||0;p.y=Number($("pY").value)||0;
+  keepInside(p);draw();
+}
+function renderCatalog(){
+  const wrap=$("catalog");
+  const q=$("catalogSearch").value.trim().toLowerCase();
+  const products=state.catalog.filter(p=>{const text=`${p.title} ${p.sku} ${p.type}`.toLowerCase();return(!q||text.includes(q))&&(!state.typeFilter||p.type===state.typeFilter);});
+  wrap.innerHTML="";
+  for(const p of products){
+    const div=document.createElement("div");div.className="catItem";
+    div.innerHTML=`<div class="catTop"><div><div class="catTitle">${escapeHtml(p.title)}</div><div class="catMeta">SKU ${escapeHtml(p.sku)} · ${p.width}"W × ${p.depth}"D · ${money(p.price)}</div></div><div class="badge">${escapeHtml(p.type)}</div></div><div class="toolbar" style="margin-top:8px"><button class="small blue">Add to plan</button>${p.handle?`<button class="small" data-handle="${escapeHtml(p.handle)}">View product</button>`:""}</div>`;
+    div.querySelector("button").addEventListener("click",()=>addPiece(p));
+    const view=div.querySelector("[data-handle]"); if(view)view.addEventListener("click",()=>window.open("/products/"+p.handle,"_blank"));
+    wrap.appendChild(div);
+  }
+  if(!products.length)wrap.innerHTML=`<div class="hint">No matching products.</div>`;
+}
+</script>
+<script>
+// continuation split to keep editors happy
+function renderQuote(){
+  const groups={};
+  for(const p of state.pieces){
+    if(p.kind!=="cabinet") continue;
+    const key=p.variantId||p.sku||p.title;
+    if(!groups[key]) groups[key]={qty:0,title:p.title,sku:p.sku,price:Number(p.price)||0,variantId:p.variantId||"",type:p.type};
+    groups[key].qty++;
+  }
+  const rows=Object.values(groups);
+  let total=0,hasVariant=false;
+  $("quoteBody").innerHTML="";
+  for(const r of rows){
+    total+=r.qty*r.price;
+    if(r.variantId) hasVariant=true;
+    const tr=document.createElement("tr");
+    tr.innerHTML=`<td>${r.qty}</td><td><b>${escapeHtml(r.sku)}</b><br>${escapeHtml(r.title)}<br><span class="hint">${money(r.price)} each · ${escapeHtml(r.type)}</span></td><td>${money(r.qty*r.price)}</td>`;
+    $("quoteBody").appendChild(tr);
+  }
+  if(!rows.length) $("quoteBody").innerHTML=`<tr><td colspan="3" class="hint">No cabinet items yet.</td></tr>`;
+  $("quoteTotal").textContent=money(total);
+  setStatus($("cartStatus"),hasVariant?"Variant IDs found. Shopify cart can include those products.":"Add Shopify variant IDs in Catalog JSON to make the cart button work.",hasVariant?"good":"");
+}
+function renderCatalogText(){ $("catalogText").value=JSON.stringify(state.catalog,null,2); }
+function serialize(){
+  return {app:"Super Cabinets Guided Kitchen Planner",version:"6.0-site-theme",savedAt:new Date().toISOString(),step:state.step,layout:state.layout,roomW:state.roomW,roomD:state.roomD,unit:state.unit,snap:state.snap,runs:state.runs,pieces:state.pieces,catalog:state.catalog};
+}
+function exportJSON(){const data=JSON.stringify(serialize(),null,2);$("designText").value=data;downloadText("super-cabinets-design-site-theme-v6.json",data,"application/json");}
+function importJSON(){
+  try{
+    const data=JSON.parse($("designText").value);
+    if(!data.roomW||!data.roomD||!Array.isArray(data.pieces)) throw new Error("Invalid design JSON.");
+    state.step=data.step||1;state.layout=data.layout||"single";state.roomW=Number(data.roomW);state.roomD=Number(data.roomD);state.unit=data.unit||"in";state.snap=Number(data.snap??1);state.runs=data.runs||state.runs;state.pieces=data.pieces;if(Array.isArray(data.catalog))state.catalog=data.catalog;
+    state.nextId=1+Math.max(0,...state.pieces.map(p=>Number(String(p.id).replace(/\D/g,""))||0));
+    state.selectedId=null;fitZoom(false);updateLayoutCards();updateStep();renderCatalog();draw();
+  }catch(err){alert("Could not import design: "+err.message);}
+}
+function exportCSV(){
+  const rows=[["Qty","SKU","Title","Type","Width","Depth","Unit Price","Line Total","Variant ID"]];
+  const groups={};
+  for(const p of state.pieces){if(p.kind!=="cabinet")continue;const key=p.variantId||p.sku||p.title;if(!groups[key])groups[key]={...p,qty:0};groups[key].qty++;}
+  for(const r of Object.values(groups)) rows.push([r.qty,r.sku,r.title,r.type,r.width,r.depth,r.price,r.qty*r.price,r.variantId||""]);
+  downloadText("super-cabinets-quote-site-theme-v6.csv",rows.map(r=>r.map(csvEscape).join(",")).join("\n"),"text/csv");
+}
+function csvEscape(v){const s=String(v??"");return /[",\n]/.test(s)?`"${s.replace(/"/g,'""')}"`:s;}
+function exportSVG(){
+  const s=state.scale;
+  let svg=`<svg xmlns="http://www.w3.org/2000/svg" width="${state.roomW*s+80}" height="${state.roomD*s+80}" viewBox="0 0 ${state.roomW*s+80} ${state.roomD*s+80}">
+  <rect width="100%" height="100%" fill="#f4f1ea"/>
+  <rect x="40" y="40" width="${state.roomW*s}" height="${state.roomD*s}" fill="#fff" stroke="#111827" stroke-width="8"/>
+  <text x="${40+state.roomW*s/2}" y="28" text-anchor="middle" font-family="Arial" font-size="14">${escapeXml(unitLabel(state.roomW))}</text>
+  <text x="${60+state.roomW*s}" y="${40+state.roomD*s/2}" transform="rotate(90 ${60+state.roomW*s} ${40+state.roomD*s/2})" text-anchor="middle" font-family="Arial" font-size="14">${escapeXml(unitLabel(state.roomD))}</text>`;
+  for(let x=0;x<=state.roomW;x+=12) svg+=`<line x1="${40+x*s}" y1="40" x2="${40+x*s}" y2="${40+state.roomD*s}" stroke="#e5e7eb" stroke-width="1"/>`;
+  for(let y=0;y<=state.roomD;y+=12) svg+=`<line x1="40" y1="${40+y*s}" x2="${40+state.roomW*s}" y2="${40+y*s}" stroke="#e5e7eb" stroke-width="1"/>`;
+  for(const p of state.pieces){
+    const sz=itemSize(p);const x=40+p.x*s,y=40+p.y*s,w=sz.w*s,d=sz.d*s;
+    const fill=p.kind==="window"?"#bfdbfe":p.kind==="door"?"#d1d5db":p.type==="base"?"#d9c19d":p.type==="wall"?"#bdd4eb":p.type==="tall"?"#d8c1db":p.type==="filler"?"#e7d9bf":"#d1d5db";
+    svg+=`<rect x="${x}" y="${y}" width="${w}" height="${d}" rx="4" fill="${fill}" stroke="#111827" stroke-width="2"/>`;
+    svg+=`<text x="${x+w/2}" y="${y+d/2}" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="10" font-weight="bold">${escapeXml(p.sku||p.title||"")}</text>`;
+  }
+  svg+=`</svg>`;
+  downloadText("super-cabinets-layout-site-theme-v6.svg",svg,"image/svg+xml");
+}
+function downloadText(filename,text,type){const blob=new Blob([text],{type:type||"text/plain"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),500);}
+function saveLocal(){localStorage.setItem("superCabinetsPlannerSiteThemeV6",JSON.stringify(serialize()));alert("Saved in this browser.");}
+function loadLocal(){const s=localStorage.getItem("superCabinetsPlannerSiteThemeV6");if(!s)return alert("No saved design found.");$("designText").value=s;importJSON();}
+function applyCatalog(){
+  try{
+    const data=JSON.parse($("catalogText").value);
+    if(!Array.isArray(data)) throw new Error("Catalog must be an array.");
+    for(const p of data){if(!p.title||!p.sku||!p.type||!p.width||!p.depth) throw new Error("Each product needs title, sku, type, width, depth.");}
+    state.catalog=data;renderCatalog();renderCatalogText();
+  }catch(err){alert("Could not apply catalog: "+err.message);}
+}
+function openCart(){
+  const qtyByVariant={};
+  for(const p of state.pieces){if(p.kind==="cabinet"&&p.variantId) qtyByVariant[p.variantId]=(qtyByVariant[p.variantId]||0)+1;}
+  const parts=Object.entries(qtyByVariant).map(([id,qty])=>`${id}:${qty}`);
+  if(!parts.length) return alert("No variant IDs found. Add Shopify variantId values to Catalog JSON first.");
+  window.open("/cart/"+parts.join(","),"_blank");
+}
+async function fetchShopify(){
+  try{
+    setStatus($("cartStatus"),"Trying to fetch Shopify products from /collections/all/products.json ...","");
+    const res=await fetch("/collections/all/products.json?limit=250",{credentials:"same-origin"});
+    if(!res.ok) throw new Error("HTTP "+res.status);
+    const data=await res.json();
+    if(!data.products||!Array.isArray(data.products)) throw new Error("No products array found.");
+    const mapped=[];
+    for(const prod of data.products){
+      const firstVar=(prod.variants||[])[0]||{};
+      const parsed=parseCabinet(prod.title+" "+(firstVar.sku||""));
+      if(!parsed) continue;
+      mapped.push({title:prod.title,sku:firstVar.sku||parsed.sku||prod.handle,type:parsed.type,width:parsed.width,depth:parsed.depth,price:Number(firstVar.price)||0,handle:prod.handle||"",variantId:firstVar.id?String(firstVar.id):""});
+    }
+    if(!mapped.length) throw new Error("Products fetched, but dimensions could not be parsed from titles/SKUs.");
+    state.catalog=mapped;renderCatalog();renderCatalogText();setStatus($("cartStatus"),`Fetched ${mapped.length} Shopify products. Review Catalog JSON before using cart links.`,"good");
+  }catch(err){setStatus($("cartStatus"),`Shopify fetch failed: ${escapeHtml(err.message)}. Paste product data into Catalog JSON instead.`,"err");}
+}
+function parseCabinet(text){
+  const t=String(text||"").toUpperCase().replace(/\s+/g,"");let m;
+  if((m=t.match(/(?:^|[^A-Z])SB(\d{2})/))) return {sku:"SB"+m[1],type:"base",width:Number(m[1]),depth:24};
+  if((m=t.match(/(?:^|[^A-Z])B(\d{2})(?!\d)/))) return {sku:"B"+m[1],type:"base",width:Number(m[1]),depth:24};
+  if((m=t.match(/(?:^|[^A-Z])W(\d{2})(\d{2})/))) return {sku:"W"+m[1]+m[2],type:"wall",width:Number(m[1]),depth:12};
+  if((m=t.match(/(?:PAN|PANTRY)(\d{2})(\d{2})/))) return {sku:"PAN"+m[1]+m[2],type:"tall",width:Number(m[1]),depth:24};
+  if((m=t.match(/RANGE(\d{2})/))) return {sku:"RANGE"+m[1],type:"appliance",width:Number(m[1]),depth:25};
+  if((m=t.match(/FRIDGE(\d{2})/))) return {sku:"FRIDGE"+m[1],type:"appliance",width:Number(m[1]),depth:30};
+  if((m=t.match(/DW(\d{2})/))) return {sku:"DW"+m[1],type:"appliance",width:Number(m[1]),depth:24};
+  if((m=t.match(/(\d{2})[X×](\d{2})/))) return {sku:"CUSTOM",type:Number(m[2])>=80?"tall":"base",width:Number(m[1]),depth:24};
+  return null;
+}
+function updateLayoutCards(){
+  document.querySelectorAll(".layoutCard").forEach(card=>card.classList.toggle("active",card.dataset.layout===state.layout));
+}
+document.querySelectorAll(".layoutCard").forEach(card=>card.addEventListener("click",()=>{state.layout=card.dataset.layout;updateLayoutCards();renderRunInputs();draw();}));
+document.querySelectorAll(".progress button").forEach(btn=>btn.addEventListener("click",()=>goStep(Number(btn.dataset.step))));
+$("nextStep").addEventListener("click",nextStep);$("prevStep").addEventListener("click",prevStep);
+$("applyRoom").addEventListener("click",applyRoom);
+$("fitBtn").addEventListener("click",()=>fitZoom(true));
+$("gridBtn").addEventListener("click",()=>stage.classList.toggle("grid"));
+$("generateBtn").addEventListener("click",generateKitchen);
+$("clearBtn").addEventListener("click",()=>{if(confirm("Clear current layout?")){state.pieces=[];state.selectedId=null;draw();}});
+$("addDoor").addEventListener("click",()=>addOpening("door"));
+$("addWindow").addEventListener("click",()=>addOpening("window"));
+$("catalogSearch").addEventListener("input",renderCatalog);
+$("refreshShopify").addEventListener("click",fetchShopify);
+document.querySelectorAll(".typeButtons button").forEach(btn=>btn.addEventListener("click",()=>{document.querySelectorAll(".typeButtons button").forEach(b=>b.classList.remove("active"));btn.classList.add("active");state.typeFilter=btn.dataset.type;renderCatalog();}));
+$("zoomIn").addEventListener("click",()=>{state.zoom=clamp(state.zoom+.1,.22,2.5);draw();});
+$("zoomOut").addEventListener("click",()=>{state.zoom=clamp(state.zoom-.1,.22,2.5);draw();});
+$("rotateBtn").addEventListener("click",rotateSelected);$("rotateProp").addEventListener("click",rotateSelected);
+$("dupBtn").addEventListener("click",duplicateSelected);$("delBtn").addEventListener("click",deleteSelected);
+$("updateProp").addEventListener("click",updateProps);$("lockWallBtn").addEventListener("click",snapToNearestWall);
+document.querySelectorAll("[data-move]").forEach(btn=>btn.addEventListener("click",()=>nudgeSelected(btn.dataset.move,1)));
+$("csvBtn").addEventListener("click",exportCSV);$("jsonBtn").addEventListener("click",exportJSON);$("svgBtn").addEventListener("click",exportSVG);$("cartBtn").addEventListener("click",openCart);
+$("importJsonBtn").addEventListener("click",importJSON);$("applyCatalog").addEventListener("click",applyCatalog);$("resetCatalog").addEventListener("click",()=>{state.catalog=JSON.parse(JSON.stringify(sampleCatalog));renderCatalog();renderCatalogText();});
+$("saveBtn").addEventListener("click",saveLocal);$("loadBtn").addEventListener("click",loadLocal);$("printBtn").addEventListener("click",()=>window.print());
+stage.addEventListener("click",e=>{if(e.target===stage){state.selectedId=null;draw();}});
+$("snap").addEventListener("change",()=>{state.snap=Number($("snap").value);draw();});
+document.querySelectorAll(".tab").forEach(tab=>tab.addEventListener("click",()=>{document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));tab.classList.add("active");["designTab","catalogTab","embedTab"].forEach(id=>$(id).classList.add("hidden"));$(tab.dataset.tab).classList.remove("hidden");}));
+window.addEventListener("keydown",e=>{
+  if(["INPUT","TEXTAREA","SELECT"].includes(document.activeElement.tagName)) return;
+  const step=e.altKey?0.5:e.shiftKey?6:1;
+  if(e.key==="ArrowLeft"){e.preventDefault();nudgeSelected("left",step);}
+  if(e.key==="ArrowRight"){e.preventDefault();nudgeSelected("right",step);}
+  if(e.key==="ArrowUp"){e.preventDefault();nudgeSelected("up",step);}
+  if(e.key==="ArrowDown"){e.preventDefault();nudgeSelected("down",step);}
+  if(e.key==="Delete"||e.key==="Backspace"){e.preventDefault();deleteSelected();}
+  if(e.key.toLowerCase()==="r"){e.preventDefault();rotateSelected();}
+});
+updateLayoutCards();updateStep();renderCatalog();renderCatalogText();fitZoom(false);draw();
+</script>
+
+<script>
+/* V5 workflow layer: undo/redo, design health, share links, and customer lead summary. */
+const v5 = {
+  undoStack: [],
+  redoStack: [],
+  restoring: false,
+  maxHistory: 60
+};
+
+function v5Snapshot(){
+  return JSON.stringify({
+    step: state.step,
+    layout: state.layout,
+    roomW: state.roomW,
+    roomD: state.roomD,
+    unit: state.unit,
+    snap: state.snap,
+    runs: state.runs,
+    pieces: state.pieces,
+    catalog: state.catalog,
+    selectedId: state.selectedId,
+    nextId: state.nextId
+  });
+}
+function v5Restore(snap){
+  const data = typeof snap === "string" ? JSON.parse(snap) : snap;
+  v5.restoring = true;
+  state.step = data.step || 1;
+  state.layout = data.layout || "single";
+  state.roomW = Number(data.roomW) || 144;
+  state.roomD = Number(data.roomD) || 120;
+  state.unit = data.unit || "in";
+  state.snap = Number(data.snap ?? 1);
+  state.runs = data.runs || state.runs;
+  state.pieces = Array.isArray(data.pieces) ? data.pieces : [];
+  state.catalog = Array.isArray(data.catalog) ? data.catalog : state.catalog;
+  state.selectedId = data.selectedId || null;
+  state.nextId = Number(data.nextId) || (1 + Math.max(0,...state.pieces.map(p=>Number(String(p.id).replace(/\D/g,""))||0)));
+  updateLayoutCards();
+  updateStep();
+  renderCatalog();
+  fitZoom(false);
+  draw();
+  v5.restoring = false;
+  v5UpdateUndoRedo();
+  v5UpdateHealth();
+}
+function v5PushHistory(reason){
+  if (v5.restoring) return;
+  const snap = v5Snapshot();
+  if (v5.undoStack[v5.undoStack.length - 1] === snap) return;
+  v5.undoStack.push(snap);
+  if (v5.undoStack.length > v5.maxHistory) v5.undoStack.shift();
+  v5.redoStack = [];
+  v5UpdateUndoRedo();
+}
+function v5Undo(){
+  if (!v5.undoStack.length) return;
+  const current = v5Snapshot();
+  const prev = v5.undoStack.pop();
+  v5.redoStack.push(current);
+  v5Restore(prev);
+  v5Toast("Undid last change.", "good");
+}
+function v5Redo(){
+  if (!v5.redoStack.length) return;
+  const current = v5Snapshot();
+  const next = v5.redoStack.pop();
+  v5.undoStack.push(current);
+  v5Restore(next);
+  v5Toast("Redid change.", "good");
+}
+function v5UpdateUndoRedo(){
+  const undo = document.getElementById("undoBtn");
+  const redo = document.getElementById("redoBtn");
+  if (undo) undo.disabled = !v5.undoStack.length;
+  if (redo) redo.disabled = !v5.redoStack.length;
+}
+function v5Toast(msg,type=""){
+  const el = document.getElementById("v5Status");
+  if (!el) return;
+  setStatus(el, msg, type);
+}
+
+function v5AABB(p){
+  const sz = itemSize(p);
+  return {x:p.x, y:p.y, w:sz.w, d:sz.d, right:p.x+sz.w, bottom:p.y+sz.d};
+}
+function v5Overlap(a,b){
+  return a.x < b.right && a.right > b.x && a.y < b.bottom && a.bottom > b.y;
+}
+function v5Analyze(){
+  const warnings = [];
+  const cabinets = state.pieces.filter(p => p.kind === "cabinet");
+  const pricedCabinets = cabinets.filter(p => Number(p.price) > 0);
+  const appliances = cabinets.filter(p => p.type === "appliance");
+  const fillers = cabinets.filter(p => p.type === "filler" || String(p.sku||"").toUpperCase().startsWith("FILL"));
+  const variantMissing = pricedCabinets.filter(p => !p.variantId).length;
+  const hasSink = cabinets.some(p => String(p.sku||"").toUpperCase().startsWith("SB"));
+  const hasRange = cabinets.some(p => String(p.sku||"").toUpperCase().includes("RANGE"));
+  const hasFridge = cabinets.some(p => String(p.sku||"").toUpperCase().includes("FRIDGE"));
+  const hasDW = cabinets.some(p => String(p.sku||"").toUpperCase().startsWith("DW"));
+
+  if (!cabinets.length){
+    warnings.push({type:"warn", icon:"1", title:"No cabinets yet", text:"Use Guided Design → Generate kitchen, or add products manually."});
+  }
+  if (cabinets.length && !hasSink) warnings.push({type:"warn", icon:"!", title:"No sink base detected", text:"Most kitchen quotes need a sink base cabinet."});
+  if (cabinets.length && !hasRange) warnings.push({type:"warn", icon:"!", title:"No range detected", text:"Add a range placeholder if this kitchen includes a stove."});
+  if (cabinets.length && !hasFridge) warnings.push({type:"warn", icon:"!", title:"No fridge detected", text:"Add a fridge placeholder so the customer can see appliance clearance."});
+  if (hasSink && !hasDW) warnings.push({type:"info", icon:"i", title:"No dishwasher selected", text:"This is fine if the customer does not want a dishwasher."});
+  if (variantMissing > 0) warnings.push({type:"warn", icon:"$", title:`${variantMissing} priced item(s) missing Shopify variant IDs`, text:"CSV/quote export still works, but Shopify cart link will skip these until variantId is added."});
+
+  const bigFillers = fillers.filter(p => Number(p.width) > 6);
+  if (bigFillers.length) warnings.push({type:"warn", icon:"F", title:"Large filler detected", text:"A filler over 6 inches may mean the run should be adjusted or cabinet sizes should be reviewed."});
+
+  // Overlap check.
+  const overlapPairs = [];
+  for (let i=0;i<state.pieces.length;i++){
+    for (let j=i+1;j<state.pieces.length;j++){
+      const a = state.pieces[i], b = state.pieces[j];
+      if (a.kind !== "cabinet" || b.kind !== "cabinet") continue;
+      if (v5Overlap(v5AABB(a), v5AABB(b))) overlapPairs.push([a,b]);
+      if (overlapPairs.length >= 4) break;
+    }
+    if (overlapPairs.length >= 4) break;
+  }
+  if (overlapPairs.length){
+    warnings.push({type:"err", icon:"×", title:"Overlapping items", text:`${overlapPairs.length} overlap(s) found. Move the highlighted layout items before using this for a quote.`});
+  }
+
+  // Walkway checks for layouts that often need clearance.
+  if (state.layout === "galley" && state.roomD - 48 < 36){
+    warnings.push({type:"err", icon:"↔", title:"Galley walkway may be too tight", text:"Two 24-inch cabinet runs leave less than 36 inches of walking space."});
+  }
+  if (state.layout === "island"){
+    const islandPieces = cabinets.filter(p => p.y > state.roomD * 0.25 && p.y < state.roomD * 0.75);
+    if (islandPieces.length && state.roomD < 120){
+      warnings.push({type:"warn", icon:"↔", title:"Island clearance needs review", text:"For small rooms, an island may create tight walkway clearance."});
+    }
+  }
+
+  if (cabinets.length && !warnings.some(w => w.type === "err" || w.type === "warn")){
+    warnings.push({type:"good", icon:"✓", title:"Ready for quote review", text:"No major planner issues detected. Final field measurement and human review are still required."});
+  }
+
+  let score = 100;
+  for (const w of warnings){
+    if (w.type === "err") score -= 22;
+    if (w.type === "warn") score -= 9;
+    if (w.type === "info") score -= 2;
+  }
+  if (!cabinets.length) score = 0;
+  score = Math.max(0, Math.min(100, score));
+
+  return {warnings, score, cabinets, pricedCabinets, appliances, fillers, variantMissing};
+}
+function v5UpdateHealth(){
+  const scoreEl = document.getElementById("designScoreNum");
+  const titleEl = document.getElementById("designScoreTitle");
+  const subEl = document.getElementById("designScoreSub");
+  const listEl = document.getElementById("designWarnings");
+  const ring = document.querySelector(".scoreRing");
+  if (!scoreEl || !listEl) return;
+
+  const result = v5Analyze();
+  scoreEl.textContent = result.score;
+  if (ring) {
+    ring.style.setProperty("--score", `${result.score}%`);
+    ring.style.setProperty("--good", result.score >= 80 ? "#059669" : result.score >= 55 ? "#f59e0b" : "#dc2626");
+  }
+  if (result.score >= 80){
+    titleEl.textContent = "Ready for quote review";
+    subEl.textContent = `${result.cabinets.length} cabinet/planner item(s). Final ordering still needs field verification.`;
+  } else if (result.score >= 55){
+    titleEl.textContent = "Needs review";
+    subEl.textContent = "The planner found a few quote/order issues to check.";
+  } else {
+    titleEl.textContent = "Not ready yet";
+    subEl.textContent = "Fix the major issues before using this as a customer quote.";
+  }
+
+  listEl.innerHTML = result.warnings.map(w => `
+    <div class="warnItem ${w.type === "info" ? "" : w.type}">
+      <div class="warnIcon">${escapeHtml(w.icon)}</div>
+      <div><b>${escapeHtml(w.title)}</b><br>${escapeHtml(w.text)}</div>
+    </div>
+  `).join("");
+}
+
+function v5QuoteSummary(){
+  const groups = {};
+  let total = 0;
+  for (const p of state.pieces){
+    if (p.kind !== "cabinet") continue;
+    const key = p.sku || p.title;
+    if (!groups[key]) groups[key] = {qty:0, sku:p.sku, title:p.title, width:p.width, depth:p.depth, price:Number(p.price)||0};
+    groups[key].qty++;
+  }
+  const lines = Object.values(groups).map(r => {
+    const line = r.qty * r.price;
+    total += line;
+    return `${r.qty} × ${r.sku} — ${r.title} (${r.width}"W × ${r.depth}"D) = ${money(line)}`;
+  });
+  const analysis = v5Analyze();
+  const warnings = analysis.warnings
+    .filter(w => w.type !== "good")
+    .map(w => `- ${w.title}: ${w.text}`)
+    .join("\n");
+
+  return [
+    "Super Cabinets Design Summary",
+    `Layout: ${state.layout.toUpperCase()}`,
+    `Room: ${unitLabel(state.roomW)} × ${unitLabel(state.roomD)}`,
+    `Design score: ${analysis.score}/100`,
+    "",
+    "Items:",
+    lines.length ? lines.join("\n") : "No cabinet items yet.",
+    "",
+    `Estimated total: ${money(total)}`,
+    "",
+    "Planner warnings:",
+    warnings || "No major planner warnings.",
+    "",
+    "Note: Final order requires field measurement and review for fillers, panels, toe kicks, trim, appliance clearance, and exact SKUs."
+  ].join("\n");
+}
+function v5LeadPackage(){
+  const name = document.getElementById("leadName")?.value || "";
+  const contact = document.getElementById("leadContact")?.value || "";
+  const notes = document.getElementById("leadNotes")?.value || "";
+  return [
+    "Super Cabinets Contact / Order Support Package",
+    `Name: ${name || "(not provided)"}`,
+    `Contact: ${contact || "(not provided)"}`,
+    `Notes: ${notes || "(none)"}`,
+    "",
+    v5QuoteSummary()
+  ].join("\n");
+}
+async function v5CopyText(text, successMsg){
+  try{
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      await navigator.clipboard.writeText(text);
+    } else {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      ta.remove();
+    }
+    v5Toast(successMsg, "good");
+  } catch(err){
+    v5Toast("Copy failed. Export JSON or CSV instead.", "err");
+  }
+}
+function v5ShareLink(){
+  const data = JSON.stringify({
+    step: state.step,
+    layout: state.layout,
+    roomW: state.roomW,
+    roomD: state.roomD,
+    unit: state.unit,
+    snap: state.snap,
+    runs: state.runs,
+    pieces: state.pieces,
+    catalog: state.catalog,
+    selectedId: state.selectedId,
+    nextId: state.nextId
+  });
+  const encoded = btoa(unescape(encodeURIComponent(data)));
+  return `${location.href.split("#")[0]}#design=${encoded}`;
+}
+function v5LoadFromHash(){
+  if (!location.hash.startsWith("#design=")) return;
+  try{
+    const encoded = location.hash.slice("#design=".length);
+    const data = JSON.parse(decodeURIComponent(escape(atob(encoded))));
+    v5Restore(data);
+    v5Toast("Loaded design from share link.", "good");
+  } catch(err){
+    v5Toast("Could not load the design from this link.", "err");
+  }
+}
+
+// Capture history before user actions mutate state.
+const v5MutatingButtons = new Set([
+  "applyRoom","generateBtn","clearBtn","addDoor","addWindow","rotateBtn","dupBtn","delBtn","rotateProp",
+  "updateProp","lockWallBtn","importJsonBtn","applyCatalog","resetCatalog"
+]);
+document.addEventListener("click", function(e){
+  const btn = e.target.closest("button");
+  if (!btn) return;
+  if (v5MutatingButtons.has(btn.id) || btn.dataset.move || btn.closest(".layoutCard") || (btn.closest(".catItem") && btn.textContent.includes("Add"))){
+    v5PushHistory(btn.id || "layout/move");
+  }
+}, true);
+document.addEventListener("pointerdown", function(e){
+  if (e.target.closest(".piece,.opening")){
+    v5PushHistory("drag");
+  }
+}, true);
+window.addEventListener("keydown", function(e){
+  if (["INPUT","TEXTAREA","SELECT"].includes(document.activeElement.tagName)) return;
+  if (["ArrowLeft","ArrowRight","ArrowUp","ArrowDown","Delete","Backspace","r","R"].includes(e.key)){
+    v5PushHistory("keyboard");
+  }
+}, true);
+
+// Wrap draw so health always refreshes after regular planner updates.
+const v5BaseDraw = draw;
+draw = function(){
+  const result = v5BaseDraw.apply(this, arguments);
+  v5UpdateUndoRedo();
+  v5UpdateHealth();
+  return result;
+};
+
+document.getElementById("undoBtn")?.addEventListener("click", v5Undo);
+document.getElementById("redoBtn")?.addEventListener("click", v5Redo);
+document.getElementById("copySummaryBtn")?.addEventListener("click", () => v5CopyText(v5QuoteSummary(), "Copied quote summary."));
+document.getElementById("copyLeadBtn")?.addEventListener("click", () => v5CopyText(v5LeadPackage(), "Copied customer lead package."));
+document.getElementById("shareLinkBtn")?.addEventListener("click", () => v5CopyText(v5ShareLink(), "Copied shareable design link."));
+
+v5UpdateUndoRedo();
+v5UpdateHealth();
+v5LoadFromHash();
+</script>
+
+</body>
+</html>
